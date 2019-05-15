@@ -26,6 +26,47 @@ public class OrderDAO {
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
+	
+	public List<Order> getOrders() throws Exception {
+		LOGGER.info("Entering getOrder<<");
+		
+		try {
+			Map<String, Integer> paramsMap = new HashMap<>();
+			
+
+			if (isDebugEnabled) {
+				LOGGER.debug("SQL for getPayments is : " + SQLConstants.getOrder);
+			}
+
+			List<Order> orders = new ArrayList<Order>();
+			List<Map<String, Object>> rows = namedJdbcTemplate.queryForList(SQLConstants.getOrders,paramsMap);
+
+			for (Map<String, Object> row : rows) {
+				Order order = new Order();
+				order.setOrderNo((int) row.get("ORDER_NO"));
+				order.setItemId((int) row.get("ITEM_NO"));
+				order.setCustomerId((int) row.get("CUSTOMER_ID"));
+				order.setQuantity((int) row.get("QUANTITY"));
+				order.setStatus((String) row.get("STATUS"));
+				order.setOrderDate(row.get("CREATED_TS").toString());
+				order.setUpdatedDate(row.get("UPDATED_TS").toString());
+				order.setPrice((float) row.get("PRICE"));
+
+				orders.add(order);
+			}
+
+			if (isDebugEnabled) {
+				LOGGER.debug("Orders fetched : " + orders);
+			}
+
+			LOGGER.info("Exiting getOrder>>");
+			return orders;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error("Error in getOrder", e.getMessage());
+			throw new Exception();
+		}
+	}
 
 	public List<Order> getOrder(int id) throws Exception {
 		LOGGER.info("Entering getOrder<<");
@@ -139,6 +180,8 @@ public class OrderDAO {
 			throw new Exception();
 		}
 	}
+
+	
 
 
 	/*

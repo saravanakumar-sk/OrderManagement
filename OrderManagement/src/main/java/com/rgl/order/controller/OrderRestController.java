@@ -32,12 +32,32 @@ public class OrderRestController {
 
 	@Autowired
 	OrderDAO orderDAO;
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value = "/get", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Order>> getOrdersResponse() {
+		LOGGER.info("Entering getOrder API<<");
+		LOGGER.info("Id : ");
+		List<Order> order;
+		try {
+
+			order = orderService.getOrders();
+
+		} catch (Exception e) {
+			LOGGER.error("Order not found.");
+			return new ResponseEntity(new CustomErrorType("Order not found." + " Please try with valid id."),
+					HttpStatus.NOT_FOUND);
+		}
+
+		LOGGER.info("Exiting getOrder API>>");
+		return new ResponseEntity<List<Order>>(order, HttpStatus.OK);
+	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Order>> getOrderResponse(@PathVariable int id) {
 		LOGGER.info("Entering getOrder API<<");
-		LOGGER.info("Id : ");
+		LOGGER.info("Id : "+id);
 		List<Order> order;
 		try {
 

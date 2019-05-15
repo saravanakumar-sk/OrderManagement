@@ -14,5 +14,7 @@ public interface OrderService {
 	public int updateOrder(int id, Order order)throws Exception;
 
 	public int createOrder(Order order) throws Exception;
+
+	public List<Order> getOrders() throws Exception;
 	
 }

@@ -20,7 +20,19 @@ public class OrderServiceImpl implements OrderService {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
-	
+	@Override
+	public List<Order> getOrders() throws Exception {
+		LOGGER.info("Entering getOrder<<");
+		try{
+		List<Order> payments = orderDAO.getOrders();
+		LOGGER.info("Exiting getOrder>>");
+		return payments;
+		}
+		catch(Exception e){
+			LOGGER.error("Exception in getting order",e.getMessage());
+			throw new Exception();
+		}
+	}
 
 	@Override
 	public List<Order> getOrder(int id) throws Exception {
