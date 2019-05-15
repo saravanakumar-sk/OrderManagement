@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: OrderManagement
+Implementation-Version: 1.0.0
+Built-By: saravanakumarsk
+Implementation-Vendor-Id: com.rgl
+Build-Jdk: 1.8.0_211
+Implementation-URL: http://projects.spring.io/spring-boot/Order/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

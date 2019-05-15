@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="postgres-jdbc-16ab5857a89-6e1e1356d175e85c" provider="postgresql" driver="postgres-jdbc" name="PostgreSQL - dafjjk2bqhm7em" save-password="true" read-only="false">
+		<connection host="ec2-107-22-238-217.compute-1.amazonaws.com" port="5432" server="" database="dafjjk2bqhm7em" url="jdbc:postgresql://ec2-107-22-238-217.compute-1.amazonaws.com:5432/dafjjk2bqhm7em" user="tmwhtvgmiazoeu" password="EFZXdhMTE0QHSwdrQkJDUidFAUdAHRpzI38SVkIFVFNGAwEJVlAVE2x5SAFURFFWchAVFEBWRVA4RBJEBSNAACWl" type="dev">
+			<provider-property name="@dbeaver-show-non-default-db@" value="true"/>
+			<provider-property name="@dbeaver-show-template-db@" value="false"/>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="true">
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" save-password="true">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="port" value="22"/>
+				<property name="implementation" value="jsch"/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="CONFIG" id="postgre_ssl" enabled="false" save-password="true">
+				<property name="sslMode" value="allow"/>
+			</network-handler>
+			<bootstrap autocommit="false"/>
+		</connection>
+	</data-source>
+	<data-source id="postgres-jdbc-16ab589bfe5-712923c9d26f1cc6" provider="postgresql" driver="postgres-jdbc" name="PostgreSQL - dafjjk2bqhm7em 2" save-password="true" read-only="false">
+		<connection host="ec2-107-22-238-217.compute-1.amazonaws.com" port="5432" server="" database="dafjjk2bqhm7em" url="jdbc:postgresql://ec2-107-22-238-217.compute-1.amazonaws.com:5432/dafjjk2bqhm7em" user="tmwhtvgmiazoeu" password="EFZXdhMTE0QHSwdrQkJDUidFAUdAHRpzI38SVkIFVFNGAwEJVlAVE2x5SAFURFFWchAVFEBWRVA4RBJEBSNAACWl" type="dev">
+			<provider-property name="@dbeaver-show-non-default-db@" value="false"/>
+			<provider-property name="@dbeaver-show-template-db@" value="false"/>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>
