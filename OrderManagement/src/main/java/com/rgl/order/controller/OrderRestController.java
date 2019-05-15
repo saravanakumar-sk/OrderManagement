@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rgl.order.dao.OrderDAO;
 import com.rgl.order.model.Order;
+import com.rgl.order.requestBody.OrderRequest;
+import com.rgl.order.service.InventoryService;
 import com.rgl.order.service.OrderService;
 import com.rgl.order.util.CustomErrorType;
 
@@ -32,6 +34,9 @@ public class OrderRestController {
 
 	@Autowired
 	OrderDAO orderDAO;
+	
+	@Autowired
+	InventoryService inventoryService;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/get", method = RequestMethod.GET, produces = "application/json")
@@ -51,6 +56,26 @@ public class OrderRestController {
 
 		LOGGER.info("Exiting getOrder API>>");
 		return new ResponseEntity<List<Order>>(order, HttpStatus.OK);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value = "/placeOrder", method = RequestMethod.POST, consumes =  "application/json")
+	public ResponseEntity getPlaceOrdersResponse(@RequestBody OrderRequest orderJson) {
+		LOGGER.info("Entering placeOrder API<<");
+		
+		String stockStatus = null;
+		try {
+
+			stockStatus = inventoryService.updateStock(orderJson);
+
+		} catch (Exception e) {
+			LOGGER.error("Order not found.");
+			return new ResponseEntity(new CustomErrorType("Order not Placed."),
+					HttpStatus.NOT_FOUND);
+		}
+
+		LOGGER.info("Exiting placeOrder API>>");
+		return new ResponseEntity(stockStatus, HttpStatus.OK);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
